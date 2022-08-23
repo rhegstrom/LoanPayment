@@ -20,6 +20,9 @@ Assignment: write a Python program that takes
 - Compute and print the monthly payment
 
 You submit the loanPmt.py file, I"ll load it and run it to see if you got it right
+
+Run program in a loop until pv is '0', then exit loop
+
 """
 
 def calculatePayment(principle, apr, term):
@@ -44,11 +47,20 @@ def calculatePayment(principle, apr, term):
     return apr / 1200 * principle / (1 - (1 + (apr / 1200 )) ** (-term))
 
 
+print('Loan payment calculator script\n')
 
-pmt = calculatePayment(principle = 39000, apr = 7.0, term = 48)
+while True:
+    inp = input('Enter the loan amount(ex: 5000.00): ')
+    if inp == '0':
+        print('Exiting...')
+        break
+    
+    principle = float(inp)
+    apr = float(input('Enter the APR%(ex: 5.0): '))
+    term = int(input('Enter the term in months(32): '))
 
+    pmt = calculatePayment(principle, apr, term)
 
-print(f'Your monthly payment is ${pmt:,.2f}/month')
-print('Your monthly payment is ${:,.2f}/month'.format(pmt))
+    print(f'Your monthly payment is ${pmt:,.2f}/month\n')
 
 
